@@ -5,3 +5,6 @@ python-docx
 ollama
 aiohttp
 numpy
+python-multipart
+uvicorn
+fastapi
