@@ -60,6 +60,39 @@ rag_project/
 │   ├── embedder.py   — векторизация текста
 │   ├── index.py      — FAISS индекс
 │   └── rag.py        — основная логика RAG
+├── api.py            — FastAPI REST API
 ├── main.py
 └── requirements.txt
+```
+
+## API
+
+Запуск REST API:
+```bash
+uvicorn api:app --reload
+```
+
+Документация доступна на `http://127.0.0.1:8000/docs`
+
+### Эндпоинты
+
+| Метод | Путь | Описание |
+|---|---|---|
+| POST | /index | Построить индекс из документов в папке documents/ |
+| POST | /ask | Задать вопрос по загруженным документам |
+| GET | /status | Статус системы и количество проиндексированных чанков |
+
+### Пример запроса
+```bash
+curl -X POST http://127.0.0.1:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"question": "Ваш вопрос"}'
+```
+
+### Пример ответа
+```json
+{
+  "answer": "Ответ на основе документов",
+  "question": "Ваш вопрос"
+}
 ```
